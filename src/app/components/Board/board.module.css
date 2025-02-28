@@ -22,7 +22,7 @@
 
 .column {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
 }
