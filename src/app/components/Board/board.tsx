@@ -12,28 +12,20 @@ export default function Board() {
 
   function renderBoard() {
     const tilesEntities = gameState.board.getTiles();
-    const tilesComponents = [];
 
+    const rows = [];
     for (let y = 0; y <= POSITION_LIMITS.Y_UPPER; y++) {
-      for (let x = 0; x <= POSITION_LIMITS.X_UPPER; x++) {
+      const tilesOfRow = [];
 
+      for (let x = 0; x <= POSITION_LIMITS.X_UPPER; x++) {
+        tilesOfRow.push(<Tile t={`(${x}, ${y})`}></Tile>);
       }
+
+      rows.push(<div className={styles.row}>{tilesOfRow}</div>);
     }
 
-
-    return (
-      // <div className={styles.column}>
-      <Tile key={i} t={i}></Tile>
-      // </div>
-    );
+    return <div className={styles.column}>{rows}</div>;
   }
 
-  return (
-    <div className={styles.container}>
-      {/* <h1>Score: {score}</h1> */}
-      {/* <button onClick={() => dispatch(increment())}>Increment</button> */}
-
-      {renderBoard()}
-    </div>
-  );
+  return <div className={styles.container}>{renderBoard()}</div>;
 }

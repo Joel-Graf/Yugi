@@ -2,13 +2,9 @@ import React from "react";
 import styles from "./tile.module.css";
 
 interface TileProps {
-  t: number;
+  t: string;
 }
 
 export default function Tile({ t }: TileProps) {
-  return (
-    <div className={styles.tile}>
-      {t + "aaa"}
-    </div>
-  );
+  return <div className={styles.tile}>{t}</div>;
 }

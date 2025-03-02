@@ -1,14 +1,13 @@
 "use client";
 
-import Board from "./components/Board/board";
-import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Board />
-      </main>
-    </div>
-  );
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/select-monsters");
+  };
+
+  return <button onClick={handleClick}>Jogar</button>;
 }
