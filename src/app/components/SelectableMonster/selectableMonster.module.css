@@ -1,0 +1,9 @@
+.selectableMonster {
+  padding: 12px;
+  background-color: blue;
+}
+
+.selectableMonsterSelected {
+  padding: 12px;
+  background-color: green;
+}

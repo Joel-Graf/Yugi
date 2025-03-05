@@ -1,28 +1,14 @@
+import { MonsterInfo } from "./MonsterInfo";
+
 type Mode = "ATK" | "DEF";
 type Status = "ALIVE" | "DESTROYED";
 
-class Monster {
-  code: string;
-  name: string;
-  atk: number;
-  def: number;
+class Monster extends MonsterInfo {
   mode?: Mode;
   status?: Status;
 
-  constructor(
-    name: string,
-    code: string,
-    atk: number,
-    def: number,
-    mode?: Mode
-  ) {
-    this.name = name;
-    this.code = code;
-    // this.src = src;
-    this.atk = atk;
-    this.def = def;
-    this.mode = mode;
-    this.status = "ALIVE";
+  constructor(monsterInfo: MonsterInfo) {
+    super(monsterInfo);
   }
 
   move() {

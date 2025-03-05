@@ -1,3 +1,5 @@
+import { MonsterInfo } from "./entities/Monsters/MonsterInfo";
+
 export const POSITION_LIMITS = {
   X_LOWER: 0,
   X_UPPER: 10,
@@ -5,32 +7,37 @@ export const POSITION_LIMITS = {
   Y_UPPER: 14,
 };
 
-export const MONSTERS = {
-  blackland_fire_dragon: {
+export const SELECT_MONSTER_MENU_LIMITS = {
+  MONSTER_STARS: 20,
+  MONSTER_QUANTITY: 7,
+};
+
+export const MONSTERS_INFO = {
+  blackland_fire_dragon: new MonsterInfo({
     code: "blackland_fire_dragon",
     name: "Blackland Fire Dragon",
     stars: 4,
     atk: 2200,
     def: 2000,
     description: "Fire Breath",
-  },
-  blue_eyes_white_dragon: {
+  }),
+  blue_eyes_white_dragon: new MonsterInfo({
     code: "blue_eyes_white_dragon",
     name: "Blue-Eyes White Dragon",
     stars: 6,
     atk: 3000,
     def: 2500,
     description: "BurstStream",
-  },
-  brain_slime: {
+  }),
+  brain_slime: new MonsterInfo({
     code: "brain_slime",
     name: "Brain Slime",
     stars: 3,
     atk: 1600,
     def: 1500,
     description: "Can't be attacked by five-star monsters",
-  },
-  celtic_swordsman: {
+  }),
+  celtic_swordsman: new MonsterInfo({
     code: "celtic_swordsman",
     name: "Celtic Swordsman",
     stars: 4,
@@ -38,16 +45,16 @@ export const MONSTERS = {
     def: 2000,
     description:
       "Celtic Swordsman's ATK goes up 200 points after each successful attack.",
-  },
-  curse_of_dragon: {
+  }),
+  curse_of_dragon: new MonsterInfo({
     code: "curse_of_dragon",
     name: "Curse of Dragon",
     stars: 5,
     atk: 2200,
     def: 1900,
     description: "Hell Flame",
-  },
-  dark_eye: {
+  }),
+  dark_eye: new MonsterInfo({
     code: "dark_eye",
     name: "Dark Eye",
     stars: 3,
@@ -55,16 +62,16 @@ export const MONSTERS = {
     def: 300,
     description:
       "When it attacks a five-star monster, that monster can't move for two turns (even if it wins)",
-  },
-  dark_magician: {
+  }),
+  dark_magician: new MonsterInfo({
     code: "dark_magician",
     name: "Dark Magician",
     stars: 5,
     atk: 2400,
     def: 2600,
     description: "Black Magic",
-  },
-  dragon_capture_jar: {
+  }),
+  dragon_capture_jar: new MonsterInfo({
     code: "dragon_capture_jar",
     name: "Dragon Capture Jar",
     stars: 5,
@@ -72,48 +79,48 @@ export const MONSTERS = {
     def: 1400,
     description:
       "If it attacks or is attacked by a dragon, the dragon is removed from the game",
-  },
-  feral_imp: {
+  }),
+  feral_imp: new MonsterInfo({
     code: "feral_imp",
     name: "Feral Imp",
     stars: 4,
     atk: 1800,
     def: 1900,
     description: "Attack reaches up to two spaces ahead",
-  },
-  gaia_the_fierce_knight: {
+  }),
+  gaia_the_fierce_knight: new MonsterInfo({
     code: "gaia_the_fierce_knight",
     name: "Gaia The Fierce Knight",
     stars: 5,
     atk: 2300,
     def: 1800,
     description: "Spiral Saber",
-  },
-  gate_guardian: {
+  }),
+  gate_guardian: new MonsterInfo({
     code: "gate_guardian",
     name: "Gate Guardian",
     stars: 5,
     atk: 2300,
     def: 2500,
     description: "Attack reaches up to three spaces ahead",
-  },
-  gimmick: {
+  }),
+  gimmick: new MonsterInfo({
     code: "gimmick",
     name: "Gimmick",
     stars: 3,
     atk: 1800,
     def: 2000,
     description: "Can't be attacked by six-star monsters",
-  },
-  gust: {
+  }),
+  gust: new MonsterInfo({
     code: "gust",
     name: "Gust",
     stars: 2,
     atk: 1500,
     def: 1200,
     description: "Can't be attacked by four-star monsters",
-  },
-  hercules_beetle: {
+  }),
+  hercules_beetle: new MonsterInfo({
     code: "hercules_beetle",
     name: "Hercules Beetle",
     stars: 4,
@@ -121,8 +128,8 @@ export const MONSTERS = {
     def: 2000,
     description:
       "Hercules Beetle's ATK goes up 200 points after each successful attack.",
-  },
-  killer_needle: {
+  }),
+  killer_needle: new MonsterInfo({
     code: "killer_needle",
     name: "Killer Needle",
     stars: 4,
@@ -130,8 +137,8 @@ export const MONSTERS = {
     def: 1600,
     description:
       "After it attacks an enemy, Killer Needle can't move on the next turn",
-  },
-  kuriboh: {
+  }),
+  kuriboh: new MonsterInfo({
     code: "kuriboh",
     name: "Kuriboh",
     stars: 2,
@@ -139,8 +146,8 @@ export const MONSTERS = {
     def: 1800,
     description:
       "When it attacks an enemy, the enemy's ATK decreases by 500 points permanently (even if it wins)",
-  },
-  mystical_elf: {
+  }),
+  mystical_elf: new MonsterInfo({
     code: "mystical_elf",
     name: "Mystical Elf",
     stars: 3,
@@ -148,37 +155,37 @@ export const MONSTERS = {
     def: 1800,
     description:
       "Any card which attacks Mystical Elf can't move on the next turn (even if it wins)",
-  },
-  red_eyes_black_dragon: {
+  }),
+  red_eyes_black_dragon: new MonsterInfo({
     code: "red_eyes_black_dragon",
     name: "Red-Eyes Black Dragon",
     stars: 6,
     atk: 2500,
     def: 2000,
     description: "Black Fire Bullet",
-  },
-  summon_skull: {
-    code: "summon_skull",
+  }),
+  summoned_skull: new MonsterInfo({
+    code: "summoned_skull",
     name: "Summoned Skull",
     stars: 5,
     atk: 2700,
     def: 2000,
     description: "Demon Lightning",
-  },
-  time_magician: {
+  }),
+  time_magician: new MonsterInfo({
     code: "time_magician",
     name: "Time Magician",
     stars: 3,
     atk: 1000,
     def: 500,
     description: "Once per game, Time Magician can warp to any location",
-  },
-  winged_dragon_guardian_of_the_fortress: {
+  }),
+  winged_dragon_guardian_of_the_fortress: new MonsterInfo({
     code: "winged_dragon_guardian_of_the_fortress",
     name: "Winged Dragon, Guardian of the Fortress",
     stars: 4,
     atk: 2100,
     def: 1500,
     description: "Fire Ball",
-  },
+  }),
 };
