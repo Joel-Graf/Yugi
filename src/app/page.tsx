@@ -1,13 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import MainMenu from "./components/MainMenu/mainMenu";
 
 export default function Home() {
-  const router = useRouter();
 
-  const handleClick = () => {
-    router.push("/select-monsters");
-  };
-
-  return <button onClick={handleClick}>Jogar</button>;
+  return <MainMenu/>;
 }
