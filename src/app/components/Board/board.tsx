@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../store/configureStore";
 import { increment, decrement } from "../../store/Game/game.actions";
 import Tile from "../Tile/tile";
-import { POSITION_LIMITS } from "@/app/constants";
+import { POSITION_LIMITS } from "@/app/constants/constants";
 
 export default function Board() {
   const gameState = useSelector((state: RootState) => state.game);

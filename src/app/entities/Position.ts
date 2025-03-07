@@ -1,4 +1,4 @@
-import { POSITION_LIMITS } from "../constants";
+import { POSITION_LIMITS } from "../constants/constants";
 
 class Position {
     x: number;

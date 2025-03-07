@@ -1,7 +1,8 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { startGame, endGame } from './game.actions';
-import { Player } from '@/app/entities/Player';
-import { Board } from '@/app/entities/Board';
+import { createReducer } from "@reduxjs/toolkit";
+import { startGame, endGame } from "./game.actions";
+import { Player } from "@/app/entities/Player";
+import { Board } from "@/app/entities/Board";
+import { Monster } from "@/app/entities/Monsters/Monster";
 
 interface GameState {
   player: Player;
@@ -20,8 +21,13 @@ const initialState: GameState = {
 
 const gameReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(startGame, (state) => {
-      // state.score += 1;
+    .addCase(startGame, (state, action) => {
+      const { monstersInfo } = action.payload;
+
+      const monsters = monstersInfo.map((info) => new Monster(info));
+      state.player.monsters = monsters;
+
+      return state;
     })
     .addCase(endGame, (state) => {
       // state.score -= 1;

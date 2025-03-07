@@ -1,4 +1,4 @@
-import { MonsterInfo } from "./entities/Monsters/MonsterInfo";
+import { MonsterInfo } from "../entities/Monsters/MonsterInfo";
 
 export const POSITION_LIMITS = {
   X_LOWER: 0,

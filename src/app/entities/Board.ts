@@ -1,6 +1,6 @@
 import { Tile } from "./Tile";
 import { Position } from "./Position";
-import { POSITION_LIMITS } from "../constants";
+import { POSITION_LIMITS } from "../constants/constants";
 
 class Board {
   tiles: Array<Tile>;

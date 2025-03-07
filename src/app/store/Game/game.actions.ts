@@ -1,4 +1,12 @@
-import { createAction } from '@reduxjs/toolkit';
+import { MonsterInfo } from "@/app/entities/Monsters/MonsterInfo";
+import { createAction } from "@reduxjs/toolkit";
 
-export const startGame = createAction('game/startGame');
-export const endGame = createAction('game/endGame');
+interface StartGamePayload {
+  monstersInfo: MonsterInfo[];
+}
+
+interface EndGamePayload {}
+
+// Create actions with payloads
+export const startGame = createAction<StartGamePayload>("game/startGame");
+export const endGame = createAction<EndGamePayload>("game/endGame");
