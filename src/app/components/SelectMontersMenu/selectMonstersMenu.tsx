@@ -1,13 +1,18 @@
 import styles from "./selectMonstersMenu.module.css";
-import { MONSTERS_INFO, SELECT_MONSTER_MENU_LIMITS } from "@/app/constants/constants";
+import {
+  MONSTERS_INFO,
+  SELECT_MONSTER_MENU_LIMITS,
+} from "@/app/constants/constants";
 import { useState } from "react";
 import SelectableMonster from "../SelectableMonster/selectableMonster";
 import { MonsterInfo } from "@/app/entities/Monsters/MonsterInfo";
 import { useRouter } from "next/navigation";
 import { startGame } from "@/app/store/Game/game.actions";
+import { useDispatch } from "react-redux";
 
 export default function SelectMonstersMenu() {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [selectedMonters, setSelectedMonsters] = useState<MonsterInfo[]>([]);
   const actualStars = selectedMonters.reduce((acumulatedStars, monsterInfo) => {
@@ -16,7 +21,7 @@ export default function SelectMonstersMenu() {
   const actualMonsterQuantity = selectedMonters.length;
 
   const handleClickPlay = () => {
-    startGame({ monstersInfo: selectedMonters });
+    dispatch(startGame({ monstersInfo: selectedMonters }));
     router.push("/game");
   };
 

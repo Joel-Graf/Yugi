@@ -1,35 +1,35 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 36px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 36px 24px;
 }
 
 .tile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    margin: 4px;
-    background: #ededed;
-    color: #0a0a0a;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 4px;
+  background: #ededed;
+  color: #0a0a0a;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 .column {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

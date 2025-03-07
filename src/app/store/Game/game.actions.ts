@@ -5,8 +5,4 @@ interface StartGamePayload {
   monstersInfo: MonsterInfo[];
 }
 
-interface EndGamePayload {}
-
-// Create actions with payloads
 export const startGame = createAction<StartGamePayload>("game/startGame");
-export const endGame = createAction<EndGamePayload>("game/endGame");

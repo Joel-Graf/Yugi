@@ -18,10 +18,16 @@ export default function Board() {
       const tilesOfRow = [];
 
       for (let x = 0; x <= POSITION_LIMITS.X_UPPER; x++) {
-        tilesOfRow.push(<Tile t={`(${x}, ${y})`}></Tile>);
+        tilesOfRow.push(
+          <Tile key={`tile:(${x}, ${y})`} t={`(${x}, ${y})`}></Tile>
+        );
       }
 
-      rows.push(<div className={styles.row}>{tilesOfRow}</div>);
+      rows.push(
+        <div key={`row:${y}`} className={styles.row}>
+          {tilesOfRow}
+        </div>
+      );
     }
 
     return <div className={styles.column}>{rows}</div>;
