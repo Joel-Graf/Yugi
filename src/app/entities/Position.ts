@@ -1,6 +1,11 @@
 import { POSITION_LIMITS } from "../constants/constants";
 
-class Position {
+export interface PositionInfo {
+    x: number;
+    y: number;
+}
+
+class Position implements PositionInfo {
     x: number;
     y: number;
 

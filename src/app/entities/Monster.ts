@@ -1,7 +1,17 @@
-import { MonsterInfo } from "../constants/constants";
+export interface MonsterInfo {
+  code: string;
+  name: string;
+  stars: number;
+  atk: number;
+  def: number;
+  description: string;
+  mode?: MonsterMode;
+  status?: MonsterStatus;
+}
 
-type Mode = "ATK" | "DEF";
-type Status = "ALIVE" | "DESTROYED";
+export type MonsterMode = "ATK" | "DEF";
+
+export type MonsterStatus = "ALIVE" | "DESTROYED";
 
 class Monster implements MonsterInfo {
   code: string;
@@ -10,8 +20,8 @@ class Monster implements MonsterInfo {
   atk: number;
   def: number;
   description: string;
-  mode?: Mode;
-  status?: Status;
+  mode?: MonsterMode;
+  status?: MonsterStatus;
 
   constructor(monsterInfo: MonsterInfo) {
     this.code = monsterInfo.code;
@@ -36,7 +46,7 @@ class Monster implements MonsterInfo {
     }
   }
 
-  setMode(mode: Mode) {
+  setMode(mode: MonsterMode) {
     this.mode = mode;
     console.log(`Setting mode to ${mode}`);
   }

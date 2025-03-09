@@ -1,3 +1,5 @@
+import { MonsterInfo } from "../entities/Monster";
+
 export const POSITION_LIMITS = {
   X_LOWER: 0,
   X_UPPER: 10,
@@ -9,15 +11,6 @@ export const SELECT_MONSTER_MENU_LIMITS = {
   MONSTER_STARS: 20,
   MONSTER_QUANTITY: 7,
 };
-
-export interface MonsterInfo {
-  code: string;
-  name: string;
-  stars: number;
-  atk: number;
-  def: number;
-  description: string;
-}
 
 export const MONSTERS_INFO: { [key: string]: MonsterInfo } = {
   blackland_fire_dragon: {

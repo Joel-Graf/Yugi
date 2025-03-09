@@ -1,22 +1,22 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { startGame } from "./game.actions";
-import { Player } from "@/app/entities/Player";
-import { Board } from "@/app/entities/Board";
+import { PlayerInfo } from "@/app/entities/Player";
+import { BoardInfo } from "@/app/entities/Board";
 import { Monster } from "@/app/entities/Monster";
 
 interface GameState {
-  player: Player;
-  oponentPlayer: Player;
+  player: PlayerInfo;
+  oponentPlayer: PlayerInfo;
   isPlayerTurn: boolean;
-  board: Board;
-  winner?: Player;
+  board: BoardInfo;
+  winner?: PlayerInfo;
 }
 
 const initialState: GameState = {
-  player: new Player(1),
-  oponentPlayer: new Player(2),
+  player: { id: 1, monsters: [] },
+  oponentPlayer: { id: 2, monsters: [] },
   isPlayerTurn: true,
-  board: new Board(),
+  board: { tiles: [] },
 };
 
 const gameReducer = createReducer(initialState, (builder) => {
