@@ -1,5 +1,5 @@
 import { Position } from "./Position";
-import { Monster } from "./Monsters/Monster";
+import { Monster } from "./Monster";
 
 class Tile {
     position: Position;

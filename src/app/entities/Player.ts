@@ -1,4 +1,4 @@
-import { Monster } from "./Monsters/Monster";
+import { Monster } from "./Monster";
 
 class Player {
     id: number;

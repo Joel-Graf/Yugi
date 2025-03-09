@@ -1,4 +1,4 @@
-import { MonsterInfo } from "@/app/entities/Monsters/MonsterInfo";
+import { MonsterInfo } from "@/app/constants/constants";
 import { createAction } from "@reduxjs/toolkit";
 
 interface StartGamePayload {

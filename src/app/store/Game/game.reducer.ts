@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { startGame } from "./game.actions";
 import { Player } from "@/app/entities/Player";
 import { Board } from "@/app/entities/Board";
-import { Monster } from "@/app/entities/Monsters/Monster";
+import { Monster } from "@/app/entities/Monster";
 
 interface GameState {
   player: Player;
