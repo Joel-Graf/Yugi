@@ -1,8 +1,8 @@
-import { MonsterInfo } from "@/app/entities/Monster";
+import { MonsterDTO } from "@/app/entities/Monster";
 import { createAction } from "@reduxjs/toolkit";
 
 interface StartGamePayload {
-  monstersInfo: MonsterInfo[];
+  monstersDTO: MonsterDTO[];
 }
 
 export const startGame = createAction<StartGamePayload>("game/startGame");

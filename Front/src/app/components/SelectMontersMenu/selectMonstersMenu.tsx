@@ -5,7 +5,7 @@ import {
 } from "@/app/constants/constants";
 import { useState } from "react";
 import SelectableMonster from "../SelectableMonster/selectableMonster";
-import { MonsterInfo } from "@/app/entities/Monsters/MonsterInfo";
+import { MonsterDTO } from "@/app/entities/Monsters/MonsterDTO";
 import { useRouter } from "next/navigation";
 import { startGame } from "@/app/store/Game/game.actions";
 import { useDispatch } from "react-redux";
@@ -14,14 +14,14 @@ export default function SelectMonstersMenu() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [selectedMonters, setSelectedMonsters] = useState<MonsterInfo[]>([]);
-  const actualStars = selectedMonters.reduce((acumulatedStars, monsterInfo) => {
-    return acumulatedStars + monsterInfo.stars;
+  const [selectedMonters, setSelectedMonsters] = useState<MonsterDTO[]>([]);
+  const actualStars = selectedMonters.reduce((acumulatedStars, monsterDTO) => {
+    return acumulatedStars + monsterDTO.stars;
   }, 0);
   const actualMonsterQuantity = selectedMonters.length;
 
   const handleClickPlay = () => {
-    dispatch(startGame({ monstersInfo: selectedMonters }));
+    dispatch(startGame({ monstersDTO: selectedMonters }));
     router.push("/game");
   };
 
@@ -29,8 +29,8 @@ export default function SelectMonstersMenu() {
     <div className={styles.menuBackground}>
       <h1>{`${actualStars}\\${SELECT_MONSTER_MENU_LIMITS.MONSTER_STARS}`}</h1>
       <div className={styles.menuRow}>
-        {Object.values(MONSTERS_INFO).map((monsterInfo, i) => {
-          const monsterCode = monsterInfo.code;
+        {Object.values(MONSTERS_INFO).map((monsterDTO, i) => {
+          const monsterCode = monsterDTO.code;
           const isSelected = selectedMonters.some(
             (selectedMonster) => selectedMonster.code === monsterCode
           );
@@ -38,7 +38,7 @@ export default function SelectMonstersMenu() {
           return (
             <SelectableMonster
               key={i}
-              monster={monsterInfo}
+              monster={monsterDTO}
               selected={isSelected}
               onClick={() => {
                 if (isSelected) {
@@ -46,7 +46,7 @@ export default function SelectMonstersMenu() {
                     [...state].filter((info) => info.code !== monsterCode)
                   );
                 } else {
-                  const updatedStars = actualStars + monsterInfo.stars;
+                  const updatedStars = actualStars + monsterDTO.stars;
                   if (updatedStars > SELECT_MONSTER_MENU_LIMITS.MONSTER_STARS) {
                     return alert("Você não pode ter mais de 20 estrelas");
                   }
@@ -57,7 +57,7 @@ export default function SelectMonstersMenu() {
                   ) {
                     return alert("Você não pode ter mais de 7 monstros");
                   }
-                  setSelectedMonsters((state) => [...state, monsterInfo]);
+                  setSelectedMonsters((state) => [...state, monsterDTO]);
                 }
               }}
             />

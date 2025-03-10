@@ -1,4 +1,4 @@
-export interface MonsterInfo {
+export interface MonsterDTO {
   code: string;
   name: string;
   stars: number;
@@ -13,7 +13,7 @@ export type MonsterMode = "ATK" | "DEF";
 
 export type MonsterStatus = "ALIVE" | "DESTROYED";
 
-class Monster implements MonsterInfo {
+export class Monster implements MonsterDTO {
   code: string;
   name: string;
   stars: number;
@@ -23,13 +23,13 @@ class Monster implements MonsterInfo {
   mode?: MonsterMode;
   status?: MonsterStatus;
 
-  constructor(monsterInfo: MonsterInfo) {
-    this.code = monsterInfo.code;
-    this.name = monsterInfo.name;
-    this.stars = monsterInfo.stars;
-    this.atk = monsterInfo.atk;
-    this.def = monsterInfo.def;
-    this.description = monsterInfo.description;
+  constructor(monsterDTO: MonsterDTO) {
+    this.code = monsterDTO.code;
+    this.name = monsterDTO.name;
+    this.stars = monsterDTO.stars;
+    this.atk = monsterDTO.atk;
+    this.def = monsterDTO.def;
+    this.description = monsterDTO.description;
     this.mode = "ATK";
     this.status = "ALIVE";
   }
@@ -51,5 +51,3 @@ class Monster implements MonsterInfo {
     console.log(`Setting mode to ${mode}`);
   }
 }
-
-export { Monster };

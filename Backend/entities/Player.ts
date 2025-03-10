@@ -1,11 +1,11 @@
 import { Monster } from "./Monster";
 
-export interface PlayerInfo {
+export interface PlayerDTO {
   id: number;
   monsters: Array<Monster>;
 }
 
-class Player implements PlayerInfo {
+class Player implements PlayerDTO {
   id: number;
   monsters: Array<Monster>;
 

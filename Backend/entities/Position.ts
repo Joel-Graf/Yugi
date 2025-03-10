@@ -1,11 +1,11 @@
 import { POSITION_LIMITS } from "../constants/constants";
 
-export interface PositionInfo {
+export interface PositionDTO {
     x: number;
     y: number;
 }
 
-class Position implements PositionInfo {
+class Position implements PositionDTO {
     x: number;
     y: number;
 

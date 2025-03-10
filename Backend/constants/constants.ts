@@ -1,4 +1,4 @@
-import { MonsterInfo } from "../entities/Monster";
+import { MonsterDTO } from "../entities/Monster";
 
 export const POSITION_LIMITS = {
   X_LOWER: 0,
@@ -12,7 +12,7 @@ export const SELECT_MONSTER_MENU_LIMITS = {
   MONSTER_QUANTITY: 7,
 };
 
-export const MONSTERS_INFO: { [key: string]: MonsterInfo } = {
+export const MONSTERS_DTO_DICTIONARY: { [key: string]: MonsterDTO } = {
   blackland_fire_dragon: {
     code: "blackland_fire_dragon",
     name: "Blackland Fire Dragon",
