@@ -2,11 +2,7 @@ import { Tile } from "./Tile";
 import { Position } from "./Position";
 import { POSITION_LIMITS } from "../constants/constants";
 
-export interface BoardDTO {
-  tiles: Array<Tile>;
-}
-
-class Board implements BoardDTO {
+export class Board {
   tiles: Array<Tile>;
 
   constructor() {
@@ -28,5 +24,3 @@ class Board implements BoardDTO {
     return this.tiles;
   }
 }
-
-export { Board };

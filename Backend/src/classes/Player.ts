@@ -1,11 +1,6 @@
 import { Monster } from "./Monster";
 
-export interface PlayerDTO {
-  id: number;
-  monsters: Array<Monster>;
-}
-
-class Player implements PlayerDTO {
+class Player {
   id: number;
   monsters: Array<Monster>;
 

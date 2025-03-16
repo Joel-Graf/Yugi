@@ -1,5 +1,3 @@
-import { MonsterDTO } from "../entities/Monster";
-
 export const POSITION_LIMITS = {
   X_LOWER: 0,
   X_UPPER: 10,
@@ -12,7 +10,31 @@ export const SELECT_MONSTER_MENU_LIMITS = {
   MONSTER_QUANTITY: 7,
 };
 
-export const MONSTERS_DTO_DICTIONARY: { [key: string]: MonsterDTO } = {
+export enum MonsterKey {
+  BlacklandFireDragon = "blackland_fire_dragon",
+  BlueEyesWhiteDragon = "blue_eyes_white_dragon",
+  BrainSlime = "brain_slime",
+  CelticSwordsman = "celtic_swordsman",
+  CurseOfDragon = "curse_of_dragon",
+  DarkEye = "dark_eye",
+  DarkMagician = "dark_magician",
+  DragonCaptureJar = "dragon_capture_jar",
+  FeralImp = "feral_imp",
+  GaiaTheFierceKnight = "gaia_the_fierce_knight",
+  GateGuardian = "gate_guardian",
+  Gimmick = "gimmick",
+  Gust = "gust",
+  HerculesBeetle = "hercules_beetle",
+  KillerNeedle = "killer_needle",
+  Kuriboh = "kuriboh",
+  MysticalElf = "mystical_elf",
+  RedEyesBlackDragon = "red_eyes_black_dragon",
+  SummonedSkull = "summoned_skull",
+  TimeMagician = "time_magician",
+  WingedDragonGuardianOfTheFortress = "winged_dragon_guardian_of_the_fortress",
+}
+
+export const MONSTERS_DTO_DICTIONARY: Record<MonsterKey, MonsterDTO> = {
   blackland_fire_dragon: {
     code: "blackland_fire_dragon",
     name: "Blackland Fire Dragon",
