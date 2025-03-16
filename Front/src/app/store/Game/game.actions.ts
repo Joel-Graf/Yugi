@@ -1,4 +1,3 @@
-import { MonsterDTO } from "@/app/entities/Monster";
 import { createAction } from "@reduxjs/toolkit";
 
 interface StartGamePayload {

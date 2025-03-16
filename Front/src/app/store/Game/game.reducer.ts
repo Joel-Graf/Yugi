@@ -1,8 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { startGame } from "./game.actions";
-import { PlayerDTO } from "@/app/entities/Player";
-import { BoardDTO } from "@/app/entities/Board";
-import { Monster } from "@/app/entities/Monster";
 
 interface GameState {
   player: PlayerDTO;
@@ -23,8 +20,7 @@ const gameReducer = createReducer(initialState, (builder) => {
   builder.addCase(startGame, (state, action) => {
     const { monstersDTO } = action.payload;
 
-    const monsters = monstersDTO.map((info) => new Monster(info));
-    state.player.monsters = monsters;
+    state.player.monsters = monstersDTO;
 
     return state;
   });

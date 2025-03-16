@@ -1,13 +1,12 @@
 import styles from "./selectMonstersMenu.module.css";
 import {
-  MONSTERS_INFO,
+  MONSTERS_DTO_DICTIONARY,
   SELECT_MONSTER_MENU_LIMITS,
-} from "@/app/constants/constants";
+} from "@/constants/constants";
 import { useState } from "react";
 import SelectableMonster from "../SelectableMonster/selectableMonster";
-import { MonsterDTO } from "@/app/entities/Monsters/MonsterDTO";
 import { useRouter } from "next/navigation";
-import { startGame } from "@/app/store/Game/game.actions";
+import { startGame } from "@/store/Game/game.actions";
 import { useDispatch } from "react-redux";
 
 export default function SelectMonstersMenu() {
@@ -29,7 +28,7 @@ export default function SelectMonstersMenu() {
     <div className={styles.menuBackground}>
       <h1>{`${actualStars}\\${SELECT_MONSTER_MENU_LIMITS.MONSTER_STARS}`}</h1>
       <div className={styles.menuRow}>
-        {Object.values(MONSTERS_INFO).map((monsterDTO, i) => {
+        {Object.values(MONSTERS_DTO_DICTIONARY).map((monsterDTO, i) => {
           const monsterCode = monsterDTO.code;
           const isSelected = selectedMonters.some(
             (selectedMonster) => selectedMonster.code === monsterCode
