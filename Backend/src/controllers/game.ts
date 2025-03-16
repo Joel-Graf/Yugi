@@ -1,8 +1,13 @@
-import { Request, Response } from "express";
-import service from "../services/game";
+import { Router } from "express";
+import gameService from "../services/game";
 
-export const getUsers = (req: Request, res: Response) => {
-  const users = service.getUsers();
-  console.log("vapo")
-  return res.json(users);
-};
+const router = Router();
+
+router.get("/", async (req, res) => {
+  const users = await gameService.getUsers();
+  // TODO: Error middleware
+  throw new Error("Something went wrong");
+  res.json(users);
+});
+
+export default router;
