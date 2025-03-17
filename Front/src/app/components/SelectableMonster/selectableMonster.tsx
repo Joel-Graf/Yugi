@@ -21,7 +21,7 @@ export default function SelectableMonster({
     >
       <Image
         key={monster.code}
-        src={`/monster/${monster.code}.png`}
+        src={`/images/monsters/${monster.code}.png`}
         alt="alt"
         width={190}
         height={250}

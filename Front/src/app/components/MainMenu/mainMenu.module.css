@@ -1,0 +1,33 @@
+.menuBackground {
+  width: 80%;
+  height: 80%;
+  border-radius: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+  background-image: url("/images/backgrounds/yu-gi-oh-wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.menuButton {
+  padding: 1em;
+  border-radius: 0.5em;
+  width: 80%;
+  font-size: 2em;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  font-family: "Yu-gi-oh-Matrix", sans-serif;
+}
+
+.menuTitle {
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: "Yu-gi-oh-Matrix", sans-serif;
+  padding-bottom: 1.5em;
+}

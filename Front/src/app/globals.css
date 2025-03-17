@@ -3,6 +3,20 @@
   --foreground: #0a0a0a;
 }
 
+@font-face {
+  font-family: "Yu-gi-oh-Matrix";
+  src: url("/fonts/yu-gi-oh-matrix/yu-gi-oh-matrix.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Yu-gi-oh-Matrix";
+  src: url("/fonts/yu-gi-oh-matrix/yu-gi-oh-matrix-bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 html,
 body {
   height: 100vh;

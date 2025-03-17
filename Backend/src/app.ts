@@ -2,17 +2,33 @@ import "express-async-errors";
 import express from "express";
 import router from "./controllers/controller";
 import errorMiddleware from "./middlewares/error";
-import "express-async-errors";
+import { WebSocketServer } from "ws";
+import http from "http";
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
-
 app.use(errorMiddleware);
-app.listen(PORT, () => {
+
+const httpServer = http.createServer(app);
+const webSocketServer = new WebSocketServer({ server: httpServer });
+
+webSocketServer.on("connection", (ws) => {
+  console.log("Cliente WebSocket conectado");
+
+  ws.on("error", console.error);
+
+  ws.on("message", (data) => {
+    console.log(`Mensagem WebSocket recebida: ${data.toString()}`);
+  });
+
+  ws.send("Conexão WebSocket estabelecida!");
+});
+
+httpServer.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
