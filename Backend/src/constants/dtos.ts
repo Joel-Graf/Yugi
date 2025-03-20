@@ -1,4 +1,4 @@
-type MonsterDTO = {
+export type MonsterDTO = {
   code: string;
   name: string;
   stars: number;
@@ -9,26 +9,26 @@ type MonsterDTO = {
   status?: MonsterStatus;
 };
 
-type PositionDTO = {
+export type PositionDTO = {
   x: number;
   y: number;
 };
 
-type PlayerDTO = {
+export type PlayerDTO = {
   id: number;
   monsters: Array<MonsterDTO>;
 };
 
-type TileDTO = {
+export type TileDTO = {
   position: PositionDTO;
   monster?: MonsterDTO;
 };
 
-type BoardDTO = {
+export type BoardDTO = {
   tiles: Array<TileDTO>;
 };
 
-type GameDTO = {
+export type GameDTO = {
   player: PlayerDTO;
   oponentPlayer: PlayerDTO;
   isPlayerTurn: boolean;

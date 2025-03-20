@@ -4,7 +4,10 @@ import router from "./controllers/controller";
 import errorMiddleware from "./middlewares/error";
 import { WebSocketServer } from "ws";
 import http from "http";
+import { connectDB } from "./config/database";
 const cors = require("cors");
+
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3003;
