@@ -1,15 +1,21 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import gameReducer from "./Game/game.reducer";
+import { configureStore, combineReducers, Reducer } from "@reduxjs/toolkit";
+import { GameReducer } from "./Game/game.reducer";
+import { AllAppActions } from "./actionPayloadTypes";
 
 const rootReducer = combineReducers({
-  game: gameReducer,
+  game: GameReducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
 });
 
-export default store;
-
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type AppAction = (
+  dispatch: AppDispatch,
+  getState: typeof store.getState
+) => void;
+export type AppReducer<S> = Reducer<S, AllAppActions>;
+
+export default store;

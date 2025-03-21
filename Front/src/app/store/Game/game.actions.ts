@@ -1,7 +1,9 @@
-import { createAction } from "@reduxjs/toolkit";
+import { AppDispatch } from "./../configureStore";
+import * as Action from "../actionTypes";
 
-interface StartGamePayload {
-  monstersDTO: MonsterDTO[];
-}
+export const startSinglePlayerGame =
+  (payload: MonsterDTO[]) => (dispatch: AppDispatch) => {
+    console.log("TESTE");
 
-export const startGame = createAction<StartGamePayload>("game/startGame");
+    dispatch({ type: Action.START_SINGLE_PLAYER_GAME, payload });
+  };

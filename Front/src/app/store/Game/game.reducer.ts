@@ -1,29 +1,33 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { startGame } from "./game.actions";
-
-interface GameState {
-  player: PlayerDTO;
-  oponentPlayer: PlayerDTO;
-  isPlayerTurn: boolean;
-  board: BoardDTO;
-  winner?: PlayerDTO;
-}
+import { AppReducer } from "@/store/configureStore";
+import * as AppAction from "@/store/actionTypes";
 
 const initialState: GameState = {
-  player: { id: 1, monsters: [] },
-  oponentPlayer: { id: 2, monsters: [] },
-  isPlayerTurn: true,
+  player1: { id: 1, monsters: [] },
+  player2: { id: 2, monsters: [] },
+  player1Turn: true,
   board: { tiles: [] },
 };
 
-const gameReducer = createReducer(initialState, (builder) => {
-  builder.addCase(startGame, (state, action) => {
-    const { monstersDTO } = action.payload;
+const socket = new WebSocket("ws://localhost:3001");
 
-    state.player.monsters = monstersDTO;
+socket.onopen = () => {
+  console.log("Conectado ao servidor!");
+  socket.send("Olá, servidor!");
+};
 
-    return state;
-  });
-});
+export const GameReducer: AppReducer<typeof initialState> = (
+  state = initialState,
+  action
+) => {
+  switch (action.type) {
+    case AppAction.START_SINGLE_PLAYER_GAME:
+      console.log("VAPO >> ", action.payload);
 
-export default gameReducer;
+      return {
+        ...state,
+      };
+
+    default:
+      return state;
+  }
+};

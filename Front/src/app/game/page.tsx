@@ -1,18 +1,22 @@
 "use client";
 
+import { startSinglePlayerGame } from "@/store/Game/game.actions";
 import Board from "../components/Board/board";
+import { useAppDispatch } from "@/hooks";
 
 export default function Game() {
-  // const socket = new WebSocket("ws://localhost:3003");
+  const dispatch = useAppDispatch();
 
-  // socket.onopen = () => {
-  //   console.log("Conectado ao servidor!");
-  //   socket.send("Olá, servidor!");
-  // };
-
-  // socket.onmessage = (event) => {
-  //   console.log("Mensagem do servidor:", event.data);
-  // };
-
-  return <Board />;
+  return (
+    <>
+      <button
+        onClick={() => {
+          dispatch(startSinglePlayerGame([]));
+        }}
+      >
+        START GAME
+      </button>
+      <Board />
+    </>
+  );
 }
