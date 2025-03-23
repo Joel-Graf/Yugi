@@ -1,5 +1,6 @@
 import { AppReducer } from "@/store/configureStore";
 import * as AppAction from "@/store/actionTypes";
+import { GameState } from "@/constants/interfaces";
 
 const initialState: GameState = {
   player1: { id: 1, monsters: [] },
@@ -21,10 +22,15 @@ export const GameReducer: AppReducer<typeof initialState> = (
 ) => {
   switch (action.type) {
     case AppAction.START_SINGLE_PLAYER_GAME:
-      console.log("VAPO >> ", action.payload);
-
       return {
         ...state,
+        player1: { ...state.player1, monsters: action.payload },
+      };
+
+    case AppAction.START_SINGLE_PLAYER_GAME:
+      return {
+        ...state,
+        player1: { ...state.player1, monsters: action.payload },
       };
 
     default:
