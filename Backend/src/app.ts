@@ -6,11 +6,14 @@ import { WebSocketServer } from "ws";
 import http from "http";
 import { connectDB } from "./config/database";
 const cors = require("cors");
+import dotenv from "dotenv";
+import { connectWS } from "./config/websocket";
 
+dotenv.config();
 connectDB();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const APP_PORT = process.env.APP_PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -18,20 +21,8 @@ app.use("/api", router);
 app.use(errorMiddleware);
 
 const httpServer = http.createServer(app);
-const webSocketServer = new WebSocketServer({ server: httpServer });
+connectWS(httpServer);
 
-webSocketServer.on("connection", (ws) => {
-  console.log("Cliente WebSocket conectado");
-
-  ws.on("error", console.error);
-
-  ws.on("message", (data) => {
-    console.log(`Mensagem WebSocket recebida: ${data.toString()}`);
-  });
-
-  ws.send("Conexão WebSocket estabelecida!");
-});
-
-httpServer.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+httpServer.listen(APP_PORT, () => {
+  console.log(`Server is running at http://localhost:${APP_PORT}`);
 });
