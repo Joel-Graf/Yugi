@@ -1,7 +1,7 @@
 export interface GameState {
-  player1: PlayerDTO;
-  player2: PlayerDTO;
-  player1Turn: boolean;
+  playerA: PlayerDTO;
+  playerB: PlayerDTO;
+  playerTurn: PlayerDTO;
   board: BoardDTO;
   winner?: PlayerDTO;
 }

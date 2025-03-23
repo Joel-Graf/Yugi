@@ -28,10 +28,10 @@ export type BoardDTO = {
   tiles: Array<TileDTO>;
 };
 
-export type GameDTO = {
-  player: PlayerDTO;
-  oponentPlayer: PlayerDTO;
-  isPlayerTurn: boolean;
-  board: BoardDTO;
+export interface GameDTO {
+  playerA: PlayerDTO;
+  playerB?: PlayerDTO;
+  playerTurn?: PlayerDTO;
+  board?: BoardDTO;
   winner?: PlayerDTO;
-};
+}
