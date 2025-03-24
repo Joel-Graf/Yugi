@@ -2,7 +2,6 @@ import "express-async-errors";
 import express from "express";
 import router from "./controllers/controller";
 import errorMiddleware from "./middlewares/error";
-import { WebSocketServer } from "ws";
 import http from "http";
 import { connectDB } from "./config/database";
 const cors = require("cors");

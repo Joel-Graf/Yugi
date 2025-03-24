@@ -31,3 +31,11 @@ type TileDTO = {
 type BoardDTO = {
   tiles: Array<TileDTO>;
 };
+
+type GameDTO = {
+  playerA: PlayerDTO;
+  playerB?: PlayerDTO;
+  playerTurn?: PlayerDTO;
+  board?: BoardDTO;
+  winner?: PlayerDTO;
+};

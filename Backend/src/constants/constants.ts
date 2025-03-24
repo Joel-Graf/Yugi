@@ -1,3 +1,5 @@
+import { MonsterDTO } from "./dtos";
+
 export const POSITION_LIMITS = {
   X_LOWER: 0,
   X_UPPER: 10,

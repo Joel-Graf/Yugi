@@ -1,19 +1,18 @@
 import { AppReducer } from "@/store/configureStore";
 import * as AppAction from "@/store/actionTypes";
-import { GameState } from "@/constants/interfaces";
 
-const initialState: GameState = {
-  player1: { id: 1, monsters: [] },
-  player2: { id: 2, monsters: [] },
-  player1Turn: true,
-  board: { tiles: [] },
+type GameState = {
+  gameDTO: GameDTO;
+  WebSocket?: WebSocket;
 };
 
-const socket = new WebSocket("ws://localhost:3001");
-
-socket.onopen = () => {
-  console.log("Conectado ao servidor!");
-  socket.send("Olá, servidor!");
+const initialState: GameState = {
+  gameDTO: {
+    playerA: {
+      id: 1,
+      monsters: [],
+    },
+  },
 };
 
 export const GameReducer: AppReducer<typeof initialState> = (
@@ -22,17 +21,14 @@ export const GameReducer: AppReducer<typeof initialState> = (
 ) => {
   switch (action.type) {
     case AppAction.START_SINGLE_PLAYER_GAME:
+      // CRIE O JOGO
+      // CRIA CONEXÃO COM WEBSOCKET
+      // SALVAR O JOGO NO ESTADO GLOBAL
+      // E ENVIAR ATUALIZAÇÃO VIA WEBSOCKET --->> id
       return {
         ...state,
-        player1: { ...state.player1, monsters: action.payload },
+        playerA: { ...state.gameDTO.playerA, monsters: action.payload },
       };
-
-    case AppAction.START_SINGLE_PLAYER_GAME:
-      return {
-        ...state,
-        player1: { ...state.player1, monsters: action.payload },
-      };
-
     default:
       return state;
   }
