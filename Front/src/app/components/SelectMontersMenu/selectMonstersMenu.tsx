@@ -6,12 +6,10 @@ import {
 import { useState } from "react";
 import SelectableMonster from "../SelectableMonster/selectableMonster";
 import { useRouter } from "next/navigation";
-import { startSinglePlayerGame } from "@/store/Game/game.actions";
-import { useAppDispatch } from "@/hooks";
+import { createGame } from "@/api/api";
 
 export default function SelectMonstersMenu() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const [selectedMonters, setSelectedMonsters] = useState<MonsterDTO[]>([]);
   const actualStars = selectedMonters.reduce((acumulatedStars, monsterDTO) => {
@@ -19,9 +17,9 @@ export default function SelectMonstersMenu() {
   }, 0);
   const actualMonsterQuantity = selectedMonters.length;
 
-  const handleClickPlay = () => {
-    dispatch(startSinglePlayerGame(selectedMonters));
-    router.push("/game");
+  const handleClickPlay = async () => {
+    const gameId = await createGame({ id: 1, monsters: selectedMonters });
+    router.push(`/game?id=${gameId}`);
   };
 
   return (

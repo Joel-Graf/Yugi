@@ -40,3 +40,8 @@ type GameDTO = {
   board?: BoardDTO;
   winner?: PlayerDTO;
 };
+
+type Message = {
+  type: string;
+  payload: string;
+};

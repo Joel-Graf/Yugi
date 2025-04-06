@@ -3,8 +3,8 @@
   max-height: 90vh;
   overflow: auto;
   background-color: pink;
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  padding: 10px; /* Optional: Add some padding if needed */
+  box-sizing: border-box;
+  padding: 10px;
 }
 
 .menuRow {

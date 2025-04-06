@@ -3,14 +3,6 @@ import WebSocket from "ws";
 
 let webSocketServer: WebSocket.Server;
 const gamesWebSockets = new Map<string, Set<WebSocket>>();
-/// id do jogo: [CLIENT DO JOGADOR 1, CLIENT DO JOGADOR 2];
-
-
-// CLIENTE -> SERVIDOR
-// SERVIDOR -> CLIENTE
-
-// CLIENTE <-> SERVIDOR <-> CLIENTE;
-// CLIENTE <-> ||   ||  <-> CLIENTE;
 
 export function connectWS(httpServer: Server) {
   webSocketServer = new WebSocket.Server({ server: httpServer });
@@ -19,15 +11,13 @@ export function connectWS(httpServer: Server) {
     console.log("Novo cliente conectado!");
 
     clientWs.on("message", (message: string) => {
-      console.log("message >> ", message.toString());
+      const data = JSON.parse(message);
 
-      // const data = JSON.parse(message);
+      console.log("DATA <<< ", data);
 
-      // if (data.type === "join_room") {
-      //   joinRoom(clientWs, data.gameId);
-      // } else if (data.type === "send_message") {
-      //   sendMessageToRoom(data.gameId, data.message);
-      // }
+      if (data.type === "join_room") {
+        joinRoom(clientWs, data.payload);
+      }
     });
 
     clientWs.on("close", () => {
@@ -60,7 +50,7 @@ function leaveRoom(ws: WebSocket) {
     if (members.has(ws)) {
       members.delete(ws);
       if (members.size === 0) {
-        gamesWebSockets.delete(gameId); // TODO: remover
+        gamesWebSockets.delete(gameId);
       }
       break;
     }

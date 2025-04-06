@@ -1,19 +1,12 @@
-import { GameEvents } from "@/constants/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-// Defina o tipo para o WebSocket
 type WebSocketContextType = {
-  ws: WebSocket | null;
-  message: string;
-  sendMessage: (msg: GameEvents) => void;
+  sendMessage: (msg: Message) => void;
 };
 
-// Criação do contexto
 const WebSocketContext = createContext<WebSocketContextType | undefined>(
   undefined
 );
-
-// Provedor de contexto
 interface WebSocketProviderProps {
   children: React.ReactNode;
 }
@@ -22,19 +15,16 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
   children,
 }) => {
   const [ws, setWs] = useState<WebSocket | null>(null);
-  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     const socket = new WebSocket("ws://localhost:3001");
 
     socket.onopen = () => {
       console.log("Conexão WebSocket estabelecida");
-      socket.send(JSON.stringify({ type: "join_room", payload: "room1" }));
     };
 
     socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setMessage(data.message); // Atualiza o estado com a mensagem recebida
+      console.log("event.data <<< ", event.data);
     };
 
     socket.onclose = () => {
@@ -52,14 +42,14 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     };
   }, []);
 
-  const sendMessage = (msg: string) => {
+  const sendMessage = (msg: Message) => {
     if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(msg); // Envia uma mensagem através da conexão WebSocket
+      ws.send(JSON.stringify(msg));
     }
   };
 
   return (
-    <WebSocketContext.Provider value={{ ws, message, sendMessage }}>
+    <WebSocketContext.Provider value={{ sendMessage }}>
       {children}
     </WebSocketContext.Provider>
   );

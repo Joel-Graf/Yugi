@@ -1,7 +1,7 @@
-const API_BASE_URL = "http://localhost:3001"; // Replace with your actual backend URL
+const API_BASE_URL = "http://localhost:3001/api";
 
 export async function createGame(player: PlayerDTO) {
-  const url = `${API_BASE_URL}/api/game`;
+  const url = `${API_BASE_URL}/game`;
 
   const defaultHeaders = {
     "Content-Type": "application/json",
