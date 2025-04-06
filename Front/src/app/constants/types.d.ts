@@ -33,6 +33,7 @@ type BoardDTO = {
 };
 
 type GameDTO = {
+  id?: string;
   playerA: PlayerDTO;
   playerB?: PlayerDTO;
   playerTurn?: PlayerDTO;

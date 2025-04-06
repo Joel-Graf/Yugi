@@ -1,5 +1,7 @@
 import { AppReducer } from "@/store/configureStore";
 import * as AppAction from "@/store/actionTypes";
+import { createGame } from "@/api/api";
+import { GameDTO } from "../../../../../Backend/src/constants/dtos";
 
 type GameState = {
   gameDTO: GameDTO;
@@ -21,13 +23,26 @@ export const GameReducer: AppReducer<typeof initialState> = (
 ) => {
   switch (action.type) {
     case AppAction.START_SINGLE_PLAYER_GAME:
-      // CRIE O JOGO
-      // CRIA CONEXÃO COM WEBSOCKET
-      // SALVAR O JOGO NO ESTADO GLOBAL
-      // E ENVIAR ATUALIZAÇÃO VIA WEBSOCKET --->> id
+      const playerA = {
+        ...state.gameDTO.playerA,
+        monsters: action.payload,
+      };
+
+      const gameToBeCreated: GameDTO = {
+        playerA: playerA,
+        playerTurn: playerA,
+      };
+
+      const gameId = createGame(gameToBeCreated.playerA);
+
+      const game = {
+        id: gameId,
+        ...gameToBeCreated,
+      };
+
       return {
         ...state,
-        playerA: { ...state.gameDTO.playerA, monsters: action.payload },
+        GameDTO: game,
       };
     default:
       return state;

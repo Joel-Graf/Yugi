@@ -1,10 +1,11 @@
+import { GameEvents } from "@/constants/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Defina o tipo para o WebSocket
 type WebSocketContextType = {
   ws: WebSocket | null;
   message: string;
-  sendMessage: (msg: string) => void;
+  sendMessage: (msg: GameEvents) => void;
 };
 
 // Criação do contexto
@@ -46,7 +47,6 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
 
     setWs(socket);
 
-    // Limpeza da conexão quando o componente for desmontado
     return () => {
       socket.close();
     };
@@ -65,7 +65,6 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
   );
 };
 
-// Hook customizado para acessar o contexto WebSocket
 export const useWebSocket = (): WebSocketContextType => {
   const context = useContext(WebSocketContext);
   if (!context) {
