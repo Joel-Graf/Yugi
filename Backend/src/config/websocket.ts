@@ -1,8 +1,16 @@
 import { Server } from "http";
 import WebSocket from "ws";
+import { GameDTO } from "../constants/dtos";
+import { getInitialBoardState } from "../utils/boardHelper";
 
 let webSocketServer: WebSocket.Server;
-const gamesWebSockets = new Map<string, Set<WebSocket>>();
+
+type GameEntry = {
+  game: GameDTO;
+  sockets: Set<WebSocket>;
+};
+
+const gamesMap = new Map<string, GameEntry>();
 
 export function connectWS(httpServer: Server) {
   webSocketServer = new WebSocket.Server({ server: httpServer });
@@ -15,8 +23,8 @@ export function connectWS(httpServer: Server) {
 
       console.log("DATA <<< ", data);
 
-      if (data.type === "join_room") {
-        joinRoom(clientWs, data.payload);
+      if (data.type === "join_game") {
+        joinGame(clientWs, data.payload);
       }
     });
 
@@ -26,19 +34,20 @@ export function connectWS(httpServer: Server) {
   });
 }
 
-function joinRoom(ws: WebSocket, gameId: string) {
-  if (!gamesWebSockets.has(gameId)) {
-    gamesWebSockets.set(gameId, new Set());
+function joinGame(ws: WebSocket, gameId: string) {
+  if (!gamesMap.has(gameId)) {
+    const initialBoard = getInitialBoardState();
+    gamesMap.set(gameId, { game: { playerA: { id: 1, monsters: [] }, board: initialBoard }, sockets: new Set() });
   }
 
-  gamesWebSockets.get(gameId)!.add(ws);
-  ws.send(`Você entrou na sala ${gameId}`);
+  gamesMap.get(gameId)!.sockets.add(ws);
+  console.log(`Você entrou na sala ${gameId}`);
 }
 
 function sendMessageToRoom(gameId: string, message: string) {
-  if (!gamesWebSockets.has(gameId)) return;
+  if (!gamesMap.has(gameId)) return;
 
-  for (const member of gamesWebSockets.get(gameId)!) {
+  for (const member of gamesMap.get(gameId)!.sockets) {
     if (member.readyState === WebSocket.OPEN) {
       member.send(message);
     }
@@ -46,11 +55,12 @@ function sendMessageToRoom(gameId: string, message: string) {
 }
 
 function leaveRoom(ws: WebSocket) {
-  for (const [gameId, members] of gamesWebSockets.entries()) {
-    if (members.has(ws)) {
-      members.delete(ws);
-      if (members.size === 0) {
-        gamesWebSockets.delete(gameId);
+  for (const [gameId, gameEntries] of gamesMap.entries()) {
+    const { sockets } = gameEntries;
+    if (sockets.has(ws)) {
+      sockets.delete(ws);
+      if (sockets.size === 0) {
+        gamesMap.delete(gameId);
       }
       break;
     }

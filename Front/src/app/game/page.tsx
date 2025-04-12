@@ -12,7 +12,7 @@ export default function Game({ searchParams }: GameProps) {
   const { sendMessage } = useWebSocket();
 
   useEffect(() => {
-    sendMessage({ type: "join_room", payload: searchParams.id });
+    sendMessage({ type: "join_game", payload: searchParams.id });
   }, [sendMessage, searchParams.id]);
 
   return (
