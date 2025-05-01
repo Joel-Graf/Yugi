@@ -1,7 +1,7 @@
 "use client";
 
-import { useWebSocket } from "@/contexts/WebSocketContext";
-import Board from "../components/Board/board";
+import { useWebSocket } from "../../contexts/WebSocketContext";
+import Board from "../../components/Board/board";
 import { useEffect } from "react";
 
 type GameProps = {

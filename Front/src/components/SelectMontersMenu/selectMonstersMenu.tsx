@@ -2,11 +2,11 @@ import styles from "./selectMonstersMenu.module.css";
 import {
   MONSTERS_DTO_DICTIONARY,
   SELECT_MONSTER_MENU_LIMITS,
-} from "@/constants/constants";
+} from "../../constants/constants";
 import { useState } from "react";
 import SelectableMonster from "../SelectableMonster/selectableMonster";
 import { useRouter } from "next/navigation";
-import { createGame } from "@/api/api";
+import { createGame } from "../../api/api";
 
 export default function SelectMonstersMenu() {
   const router = useRouter();
