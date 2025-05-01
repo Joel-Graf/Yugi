@@ -1,4 +1,4 @@
-import Board from "../../components/Board/board";
+import Board from "../../components/game/Board/board";
 
 export default function Game() {
   return (

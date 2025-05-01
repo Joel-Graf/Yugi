@@ -1,4 +1,4 @@
-import { POSITION_LIMITS } from "../../constants/constants";
+import { POSITION_LIMITS } from "../../../constants/constants";
 import styles from "./board.module.css";
 import Tile from "../Tile/tile";
 
