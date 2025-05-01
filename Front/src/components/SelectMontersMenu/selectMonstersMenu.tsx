@@ -6,7 +6,6 @@ import {
 import { useState } from "react";
 import SelectableMonster from "../SelectableMonster/selectableMonster";
 import { useRouter } from "next/navigation";
-import { createGame } from "../../api/api";
 
 export default function SelectMonstersMenu() {
   const router = useRouter();
@@ -18,8 +17,7 @@ export default function SelectMonstersMenu() {
   const actualMonsterQuantity = selectedMonters.length;
 
   const handleClickPlay = async () => {
-    const gameId = await createGame({ id: 1, monsters: selectedMonters });
-    router.push(`/game?id=${gameId}`);
+    router.push(`/game`);
   };
 
   return (

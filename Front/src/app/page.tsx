@@ -2,6 +2,6 @@
 
 import MainMenu from "../components/MainMenu/mainMenu";
 
-export default function Home() {
+export default function Index() {
   return <MainMenu />;
 }
