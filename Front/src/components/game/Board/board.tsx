@@ -2,15 +2,17 @@ import { POSITION_LIMITS } from "../../../constants/constants";
 import styles from "./board.module.css";
 import Tile from "../Tile/tile";
 
-export default function Board() {
-  function renderBoard() {
+export default function Board(props: { boardTiles: BoardTiles }) {
+  function renderBoard(boardTiles: BoardTiles) {
+    if (!boardTiles) return;
+
     const rows = [];
     for (let y = 0; y <= POSITION_LIMITS.Y_UPPER; y++) {
       const tilesOfRow = [];
 
       for (let x = 0; x <= POSITION_LIMITS.X_UPPER; x++) {
         tilesOfRow.push(
-          <Tile key={`tile:(${x}, ${y})`} t={`(${x}, ${y})`}></Tile>
+          <Tile key={`(${x}, ${y})`} tileState={boardTiles[x][y]}></Tile>
         );
       }
 
@@ -24,5 +26,5 @@ export default function Board() {
     return <div className={styles.column}>{rows}</div>;
   }
 
-  return <div className={styles.container}>{renderBoard()}</div>;
+  return <div className={styles.container}>{renderBoard(props.boardTiles)}</div>;
 }

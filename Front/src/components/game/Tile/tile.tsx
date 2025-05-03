@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./tile.module.css";
 
 interface TileProps {
-  t: string;
+  tileState: Tile
 }
 
-export default function Tile({ t }: TileProps) {
-  return <div className={styles.tile}>{t}</div>;
+export default function Tile({ tileState }: TileProps) {
+  return <div className={styles.tile}>{JSON.stringify(tileState)}</div>;
 }

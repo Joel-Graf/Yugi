@@ -53,6 +53,8 @@ function createSinglePlayerGame(clientWs: WebSocket) {
   const sockets = new Set<WebSocket>().add(clientWs);
 
   gamesMap.set(id, { game, sockets });
+
+  clientWs.send(JSON.stringify({ type: "GAME_CREATED", payload: { game } }))
 }
 
 function joinGame(clientWs: WebSocket, gameID: string) {

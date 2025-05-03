@@ -28,16 +28,12 @@ type TileDTO = {
   monster?: MonsterDTO;
 };
 
-type BoardDTO = {
-  tiles: Array<TileDTO>;
-};
-
 type GameDTO = {
   id?: string;
   playerA: PlayerDTO;
   playerB?: PlayerDTO;
   playerTurn?: PlayerDTO;
-  board?: BoardDTO;
+  board?: Board;
   winner?: PlayerDTO;
 };
 
@@ -45,3 +41,28 @@ type Message = {
   type: string;
   payload: string;
 };
+
+type Wall = {
+  up: boolean;
+  right: boolean;
+  down: boolean;
+  left: boolean;
+}
+
+type Position = {
+  x: number;
+  y: number;
+}
+
+type Tile = {
+  position: Position;
+  wall?: Wall;
+  monster?: Monster;
+}
+
+
+type Board = {
+  tiles: BoardTiles;
+}
+
+type BoardTiles = Array<Array<Tile>>;

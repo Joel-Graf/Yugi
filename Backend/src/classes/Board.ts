@@ -1,7 +1,7 @@
-import { Tile } from "../constants/types";
+import { BoardTiles, Tile } from "../constants/types";
 
 export class Board {
-  tiles: Array<Array<Tile>>;
+  tiles: BoardTiles;
 
   constructor() {
     this.tiles = Array.from({ length: BOARD_WIDTH }, (_, x) =>
@@ -20,7 +20,7 @@ export class Board {
   }
 }
 
-const BOARD_HEIGHT = 14;
+const BOARD_HEIGHT = 15;
 const BOARD_WIDTH = 11;
 
 const BOARD_WALLS_BY_POSITION_STRING: Record<string, Tile> = {
