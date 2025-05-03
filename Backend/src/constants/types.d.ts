@@ -8,3 +8,21 @@ export type GameEvent = {
     type: GameEventType;
     payload: any;
 }
+
+export type Wall = {
+    up: boolean;
+    right: boolean;
+    down: boolean;
+    left: boolean;
+}
+
+export type Position = {
+    x: number;
+    y: number;
+}
+
+export type Tile = {
+    position: Position;
+    wall?: Wall;
+    monster?: Monster;
+}

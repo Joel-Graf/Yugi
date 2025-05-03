@@ -1,9 +1,9 @@
-import { BoardDTO, TileDTO } from "../constants/dtos";
+import { Tile } from "./types";
 
 const BOARD_HEIGHT = 14;
 const BOARD_WIDTH = 11;
 
-const BOARD_WALLS_BY_POSITION_STRING: Record<string, TileDTO> = {
+const BOARD_WALLS_BY_POSITION_STRING: Record<string, Tile> = {
   "(0,0)": {
     position: {
       x: 0,
@@ -65,21 +65,3 @@ const BOARD_WALLS_BY_POSITION_STRING: Record<string, TileDTO> = {
     },
   },
 };
-
-export function getInitialBoardState(): BoardDTO {
-  const board = Array.from({ length: BOARD_WIDTH }, (_, x) =>
-    Array.from({ length: BOARD_HEIGHT }, (_, y): TileDTO => {
-      const positionString = `(${x},${y})`;
-
-      const tileWithoutWall = {
-        position: { x, y },
-      };
-
-      return BOARD_WALLS_BY_POSITION_STRING[positionString]
-        ? BOARD_WALLS_BY_POSITION_STRING[positionString]
-        : tileWithoutWall;
-    })
-  );
-
-  return board;
-}

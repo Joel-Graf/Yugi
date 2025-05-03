@@ -1,3 +1,5 @@
+import { MonsterMode, MonsterStatus } from "../constants/types";
+
 export class Monster {
   code: string;
   name: string;

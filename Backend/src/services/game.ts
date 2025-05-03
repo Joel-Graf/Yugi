@@ -1,7 +1,6 @@
 import { Document, ObjectId, WithId } from "mongodb";
 import { db } from "../config/database";
 import { GameDTO, PlayerDTO } from "../constants/dtos";
-import { getInitialBoardState } from "../utils/boardHelper";
 
 const getGames = async (): Promise<WithId<Document>[]> => {
   const collection = db.collection("games");
@@ -18,8 +17,7 @@ const getGameById = async (id: string): Promise<WithId<Document> | null> => {
 
 const createGame = async (playerCreatingGame: PlayerDTO): Promise<ObjectId> => {
   const collection = db.collection("games");
-  const initialBoard = getInitialBoardState()
-  const result = await collection.insertOne({ playerA: playerCreatingGame, board: initialBoard });
+  const result = await collection.insertOne({ playerA: playerCreatingGame, board: {} });
   return result.insertedId;
 };
 

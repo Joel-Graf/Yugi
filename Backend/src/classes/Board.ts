@@ -1,26 +1,88 @@
-import { Tile } from "./Tile";
-import { Position } from "./Position";
-import { POSITION_LIMITS } from "../constants/constants";
+import { Tile } from "../constants/types";
 
 export class Board {
-  tiles: Array<Tile>;
+  tiles: Array<Array<Tile>>;
 
   constructor() {
-    const tiles = [];
+    this.tiles = Array.from({ length: BOARD_WIDTH }, (_, x) =>
+      Array.from({ length: BOARD_HEIGHT }, (_, y): Tile => {
+        const positionString = `(${x},${y})`;
 
-    // Order: columns from left to right, rows from bottom to top;
-    for (let x = POSITION_LIMITS.X_LOWER; x <= POSITION_LIMITS.X_UPPER; x++) {
-      for (let y = POSITION_LIMITS.Y_LOWER; y <= POSITION_LIMITS.Y_UPPER; y++) {
-        const position = new Position(x, y);
-        const tile = new Tile(position);
-        tiles.push(tile);
-      }
-    }
+        const tileWithoutWall = {
+          position: { x, y },
+        };
 
-    this.tiles = tiles;
-  }
-
-  getTiles() {
-    return this.tiles;
+        return BOARD_WALLS_BY_POSITION_STRING[positionString]
+          ? BOARD_WALLS_BY_POSITION_STRING[positionString]
+          : tileWithoutWall;
+      })
+    );
   }
 }
+
+const BOARD_HEIGHT = 14;
+const BOARD_WIDTH = 11;
+
+const BOARD_WALLS_BY_POSITION_STRING: Record<string, Tile> = {
+  "(0,0)": {
+    position: {
+      x: 0,
+      y: 0,
+    },
+    wall: {
+      up: false,
+      right: false,
+      down: true,
+      left: true,
+    },
+  },
+  "(1,0)": {
+    position: {
+      x: 1,
+      y: 0,
+    },
+    wall: {
+      up: false,
+      right: true,
+      down: true,
+      left: false,
+    },
+  },
+  "(2,0)": {
+    position: {
+      x: 2,
+      y: 0,
+    },
+    wall: {
+      up: false,
+      right: false,
+      down: true,
+      left: true,
+    },
+  },
+  "(3,0)": {
+    position: {
+      x: 3,
+      y: 0,
+    },
+    wall: {
+      up: true,
+      right: false,
+      down: true,
+      left: false,
+    },
+  },
+  "(4,0)": {
+    position: {
+      x: 4,
+      y: 0,
+    },
+    wall: {
+      up: false,
+      right: false,
+      down: true,
+      left: false,
+    },
+  },
+};
+
