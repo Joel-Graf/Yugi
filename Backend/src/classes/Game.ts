@@ -2,23 +2,23 @@ import { Board } from "./Board";
 import { Player } from "./Player";
 
 export class Game {
-  player: Player;
-  oponentPlayer: Player;
+  playerA: Player;
+  playerB?: Player;
   isPlayerTurn: boolean;
   board: Board;
   winner?: Player;
 
   constructor(
-    player: Player,
-    oponentPlayer: Player,
+    playerA: Player,
     isPlayerTurn: boolean,
     board: Board,
+    playerB?: Player,
     winner?: Player
   ) {
-    this.player = player;
-    this.oponentPlayer = oponentPlayer;
+    this.playerA = playerA;
     this.isPlayerTurn = isPlayerTurn;
     this.board = board;
+    this.playerB = playerB;
     this.winner = winner;
   }
 }

@@ -1,3 +1,5 @@
+import { MonsterMode, MonsterStatus } from "./types";
+
 export type MonsterDTO = {
   code: string;
   name: string;
@@ -32,10 +34,9 @@ export type WallDTO = {
   left: boolean;
 };
 
-// <----> 11 // \/ /\ 14
 export type BoardDTO = Array<Array<TileDTO>>;
 
-export interface GameDTO {
+export type GameDTO = {
   playerA: PlayerDTO;
   playerB?: PlayerDTO;
   playerTurn?: PlayerDTO;

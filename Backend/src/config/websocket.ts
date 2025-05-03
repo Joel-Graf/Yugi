@@ -1,12 +1,14 @@
 import { Server } from "http";
 import WebSocket from "ws";
-import { GameDTO } from "../constants/dtos";
-import { getInitialBoardState } from "../utils/boardHelper";
+import { Player } from "../classes/Player";
+import { Game } from "../classes/Game";
+import { Board } from "../classes/Board";
+import { GameEvent } from "../constants/types";
 
 let webSocketServer: WebSocket.Server;
 
 type GameEntry = {
-  game: GameDTO;
+  game: Game;
   sockets: Set<WebSocket>;
 };
 
@@ -16,15 +18,24 @@ export function connectWS(httpServer: Server) {
   webSocketServer = new WebSocket.Server({ server: httpServer });
 
   webSocketServer.on("connection", (clientWs: WebSocket) => {
-    console.log("Novo cliente conectado!");
-
     clientWs.on("message", (message: string) => {
-      const data = JSON.parse(message);
+      console.log("gamesMap: ", gamesMap);
 
-      console.log("DATA <<< ", data);
+      const { type, payload }: GameEvent = JSON.parse(message);
 
-      if (data.type === "join_game") {
-        joinGame(clientWs, data.payload);
+      switch (type) {
+        case "CREATE_SINGLE_PLAYER_GAME":
+          createSinglePlayerGame(clientWs);
+          break;
+        case "JOIN_GAME":
+          const id = payload?.gameID ?? "";
+          joinGame(clientWs, id);
+          break;
+        case "START_GAME":
+          // statement N
+          break;
+        default:
+          throw new Error("Invalid GameEvent type!");
       }
     });
 
@@ -34,14 +45,20 @@ export function connectWS(httpServer: Server) {
   });
 }
 
-function joinGame(ws: WebSocket, gameId: string) {
-  if (!gamesMap.has(gameId)) {
-    const initialBoard = getInitialBoardState();
-    gamesMap.set(gameId, { game: { playerA: { id: 1, monsters: [] }, board: initialBoard }, sockets: new Set() });
-  }
+function createSinglePlayerGame(clientWs: WebSocket) {
+  const playerA = new Player(1);
+  const board = new Board();
+  const game = new Game(playerA, true, board);
+  const id = "teste_id";
+  const sockets = new Set<WebSocket>().add(clientWs);
 
-  gamesMap.get(gameId)!.sockets.add(ws);
-  console.log(`Você entrou na sala ${gameId}`);
+  gamesMap.set(id, { game, sockets });
+}
+
+function joinGame(clientWs: WebSocket, gameID: string) {
+  if (!gamesMap.has(gameID)) return;
+
+  gamesMap.get(gameID)!.sockets.add(clientWs);
 }
 
 function sendMessageToRoom(gameId: string, message: string) {
